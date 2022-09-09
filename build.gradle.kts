@@ -48,10 +48,11 @@ allprojects {
 tasks.register<GradleBuild>("runChecks") {
     tasks = listOf(
         "clean",
-        "jacocoTestCoverageVerification",
+        "refreshVersionsMigrate",
         "buildHealth",
         "diktatFix",
-        "build"
+        "build",
+        "jacocoTestCoverageVerification"
     )
     outputs
         .dir(layout.buildDirectory.dir("runChecks"))

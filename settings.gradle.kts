@@ -6,6 +6,9 @@ pluginManagement {
         maven { url = uri("https://plugins.gradle.org/m2/") }
     }
     plugins {
+        kotlin("jvm") version "1.7.10"
+        id("io.ktor.plugin") version "2.1.1"
+        id("org.jetbrains.kotlin.plugin.serialization") version "1.7.10"
     }
 }
 
@@ -19,7 +22,7 @@ refreshVersions {
         candidate.value.contains(unstableRegex)
     }
 }
-rootProject.name = "kotlin-app-template"
+rootProject.name = "s-backend"
 include(
     "app"
 )
