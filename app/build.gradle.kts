@@ -26,8 +26,8 @@ dependencies {
     implementation(Ktor.utils)
     implementation(KotlinX.serialization.json)
 
-    // testImplementation("io.ktor:ktor-server-tests-jvm:_")
-    // testImplementation(Kotlin.test.junit)
+    testImplementation("io.ktor:ktor-server-tests-jvm:_")
+    testImplementation(Kotlin.test.junit)
 }
 
 apply(from = "$rootDir/jacoco.gradle")

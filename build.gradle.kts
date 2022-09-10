@@ -45,6 +45,20 @@ allprojects {
     }
 }
 
+tasks.register<GradleBuild>("codeChecks") {
+    tasks = listOf(
+        "clean",
+        "refreshVersionsMigrate",
+        "buildHealth",
+        "diktatFix",
+        "jacocoTestCoverageVerification"
+
+    )
+    outputs
+        .dir(layout.buildDirectory.dir("runChecks"))
+        .withPropertyName("outputDir")
+}
+
 tasks.register<GradleBuild>("runChecks") {
     tasks = listOf(
         "clean",
