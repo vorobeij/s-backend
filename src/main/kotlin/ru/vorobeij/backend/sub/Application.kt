@@ -1,7 +1,7 @@
 package ru.vorobeij.backend.sub
 
-import io.ktor.server.application.*
-import io.ktor.server.netty.*
+import io.ktor.server.application.Application
+import io.ktor.server.netty.EngineMain
 import ru.vorobeij.backend.sub.plugins.configureRouting
 import ru.vorobeij.backend.sub.plugins.configureSerialization
 
