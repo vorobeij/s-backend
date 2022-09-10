@@ -18,6 +18,3 @@ refreshVersions {
     }
 }
 rootProject.name = "s-backend"
-include(
-    "app"
-)
