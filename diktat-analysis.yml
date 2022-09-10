@@ -171,10 +171,10 @@
   enabled: true
 # Checks that there is no wildcard imports. Exception: allowedWildcards
 - name: FILE_WILDCARD_IMPORTS
-  enabled: true
+  enabled: false
   configuration:
     # Allowed wildcards for imports (e.g. "import org.cqfn.diktat.*, import org.jetbrains.kotlin.*")
-    allowedWildcards: "kotlinx.serialization.*,org.cqfn.diktat.ruleset.utils.*,androidx.compose.material3.*,import io.ktor.*"
+    allowedWildcards: "kotlinx.serialization.*,org.cqfn.diktat.ruleset.utils.*,androidx.compose.material3.*,import io.ktor.**.*"
 # Checks unused imports
 - name: UNUSED_IMPORT
   enabled: true

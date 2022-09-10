@@ -53,8 +53,8 @@ tasks.register<GradleBuild>("codeChecks") {
         "refreshVersionsMigrate",
         "buildHealth",
         "diktatFix",
-        "jacocoTestCoverageVerification",
-        "kotlinTestRule"
+        "kotlinTestRule",
+        "test"
     )
     outputs
         .dir(layout.buildDirectory.dir("codeChecks"))

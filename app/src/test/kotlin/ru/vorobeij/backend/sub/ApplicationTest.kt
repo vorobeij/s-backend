@@ -20,4 +20,15 @@ class ApplicationTest {
             assertEquals("Hello World!", bodyAsText())
         }
     }
+
+    @Test
+    fun `test serialization`() = testApplication {
+        application {
+            configureRouting()
+        }
+        client.get("/json/kotlinx-serialization").apply {
+            assertEquals(HttpStatusCode.OK, status)
+            assertEquals("""{"hello":"world"}""", bodyAsText())
+        }
+    }
 }
