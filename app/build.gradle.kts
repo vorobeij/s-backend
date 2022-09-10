@@ -15,6 +15,12 @@ application {
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
 
+ktor {
+    fatJar {
+        archiveFileName.set("app-fat.jar")
+    }
+}
+
 dependencies {
     implementation("io.ktor:ktor-server-content-negotiation-jvm:_")
     implementation("io.ktor:ktor-server-core-jvm:_")
