@@ -7,7 +7,7 @@ import io.ktor.server.testing.testApplication
 import kotlin.test.assertEquals
 import org.junit.Test
 
-internal class TopicTest {
+internal class RoutingTopicTest {
 
     @Test
     fun `topic edit`() = testApplication {

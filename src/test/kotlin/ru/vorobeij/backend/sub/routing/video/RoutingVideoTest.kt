@@ -11,10 +11,10 @@ import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.testing.testApplication
 import kotlin.test.assertEquals
 import org.junit.Test
-import ru.vorobeij.backend.sub.routing.video.data.SearchRequestBody
-import ru.vorobeij.backend.sub.routing.video.data.SearchResponseBody
+import ru.vorobeij.backend.sub.routing.video.search.data.VideoSearchRequestBody
+import ru.vorobeij.backend.sub.routing.video.search.data.VideoSearchResponseBody
 
-internal class VideoTest {
+internal class RoutingVideoTest {
 
     @Test
     fun search() = testApplication {
@@ -26,11 +26,11 @@ internal class VideoTest {
         client
             .get("/video/search") {
                 contentType(ContentType.Application.Json)
-                setBody(SearchRequestBody("test topics service"))
+                setBody(VideoSearchRequestBody())
             }
             .apply {
                 assertEquals(HttpStatusCode.OK, status)
-                assertEquals(SearchResponseBody("test topics service"), body())
+                assertEquals(VideoSearchResponseBody(emptyList(), 0), body())
             }
     }
 }
