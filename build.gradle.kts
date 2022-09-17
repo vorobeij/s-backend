@@ -50,15 +50,12 @@ apply(from = "./ci/testrules/kotlin-tests-rule.gradle")
 tasks.register<GradleBuild>("codeChecks") {
     tasks = listOf(
         "clean",
-        "refreshVersionsMigrate",
+        // "refreshVersionsMigrate",
         "buildHealth",
         "diktatFix",
         "kotlinTestRule",
         "test"
     )
-    outputs
-        .dir(layout.buildDirectory.dir("codeChecks"))
-        .withPropertyName("outputDir")
 }
 
 tasks.register<GradleBuild>("buildChecks") {
@@ -66,9 +63,6 @@ tasks.register<GradleBuild>("buildChecks") {
         "clean",
         "build"
     )
-    outputs
-        .dir(layout.buildDirectory.dir("runChecks"))
-        .withPropertyName("outputDir")
 }
 
 plugins {
@@ -97,16 +91,27 @@ ktor {
 dependencies {
     implementation("io.ktor:ktor-server-content-negotiation-jvm:_")
     implementation("io.ktor:ktor-server-core-jvm:_")
-    implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:_")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:_")
     implementation("io.ktor:ktor-server-netty-jvm:_")
-    implementation(Ktor.http)
-    implementation(Ktor.features.serialization)
-    implementation("io.ktor:ktor-server-host-common:_")
+    implementation(Ktor.plugins.http)
+    implementation(Ktor.plugins.serialization)
+    implementation(Ktor.server.hostCommon)
     implementation(Ktor.utils)
     implementation(KotlinX.serialization.json)
 
+    implementation(JetBrains.exposed.core)
+    implementation(JetBrains.exposed.dao)
+    implementation(JetBrains.exposed.jdbc)
+    testImplementation("io.ktor:ktor-server-test-host:_")
+    implementation("org.slf4j:slf4j-nop:_")
+    implementation(Koin.ktor)
+    implementation(Koin.slf4j)
+    testImplementation("io.ktor:ktor-client-content-negotiation:_")
     testImplementation("io.ktor:ktor-server-tests-jvm:_")
     testImplementation(Kotlin.test.junit)
+    testImplementation(Koin.test)
+    testImplementation(Koin.junit4)
+    testImplementation(Testing.mockK)
 }
 
 apply(from = "$rootDir/jacoco.gradle")
