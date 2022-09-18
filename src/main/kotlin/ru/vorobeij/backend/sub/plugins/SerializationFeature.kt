@@ -6,11 +6,15 @@ import io.ktor.server.application.install
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import kotlinx.serialization.json.Json
 
-fun Application.configureSerialization() {
+class SerializationFeature : Feature {
 
-    install(ContentNegotiation) {
-        json(Json {
-            isLenient = true
-        })
+    override val module = null
+
+    override fun Application.install() {
+        install(ContentNegotiation) {
+            json(Json {
+                isLenient = true
+            })
+        }
     }
 }

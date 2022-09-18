@@ -53,7 +53,7 @@ tasks.register<GradleBuild>("codeChecks") {
         // "refreshVersionsMigrate",
         "buildHealth",
         "diktatFix",
-        "kotlinTestRule",
+        // "kotlinTestRule",
         "test"
     )
 }
