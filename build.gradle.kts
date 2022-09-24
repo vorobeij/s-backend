@@ -86,31 +86,58 @@ ktor {
     fatJar {
         archiveFileName.set("app-fat.jar")
     }
+
+    // https://ktor.io/docs/docker.html#build-run
+    docker {
+        jreVersion.set(io.ktor.plugin.features.JreVersion.JRE_17)
+        localImageName.set("s-backend-docker-image")
+        imageTag.set("0.0.1")
+        portMappings.set(
+            listOf(
+                io.ktor.plugin.features.DockerPortMapping(
+                    80,
+                    8080,
+                    io.ktor.plugin.features.DockerPortMappingProtocol.TCP
+                )
+            )
+        )
+        // externalRegistry.set(
+        //     io.ktor.plugin.features.DockerImageRegistry.dockerHub(
+        //         appName = provider { "ktor-app" },
+        //         username = providers.environmentVariable("DOCKER_HUB_USERNAME"),
+        //         password = providers.environmentVariable("DOCKER_HUB_PASSWORD")
+        //     )
+        // )
+    }
 }
 
 dependencies {
+    implementation("ch.qos.logback:logback-classic:_")
+    implementation("com.zaxxer:HikariCP:_")
+    implementation("io.ktor:ktor-server-call-logging:_")
     implementation("io.ktor:ktor-server-content-negotiation-jvm:_")
     implementation("io.ktor:ktor-server-core-jvm:_")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:_")
     implementation("io.ktor:ktor-server-netty-jvm:_")
-    implementation(Ktor.plugins.http)
-    implementation(Ktor.plugins.serialization)
-    implementation(Ktor.server.hostCommon)
-    implementation(Ktor.utils)
-    implementation(KotlinX.serialization.json)
-
+    implementation("mysql:mysql-connector-java:_")
+    implementation("org.postgresql:postgresql:_")
+    implementation("org.slf4j:slf4j-nop:_")
     implementation(JetBrains.exposed.core)
     implementation(JetBrains.exposed.dao)
     implementation(JetBrains.exposed.jdbc)
-    testImplementation("io.ktor:ktor-server-test-host:_")
-    implementation("org.slf4j:slf4j-nop:_")
     implementation(Koin.ktor)
     implementation(Koin.slf4j)
-    testImplementation("io.ktor:ktor-client-content-negotiation:_")
+    implementation(KotlinX.serialization.json)
+    implementation(Ktor.plugins.http)
+    implementation(Ktor.plugins.serialization)
+    implementation(Ktor.plugins.serialization.kotlinx.json)
+    implementation(Ktor.server.hostCommon)
+    implementation(Ktor.utils)
     testImplementation("io.ktor:ktor-server-tests-jvm:_")
-    testImplementation(Kotlin.test.junit)
-    testImplementation(Koin.test)
     testImplementation(Koin.junit4)
+    testImplementation(Koin.test)
+    testImplementation(Kotlin.test.junit)
+    testImplementation(Ktor.client.contentNegotiation)
+    testImplementation(Ktor.server.testHost)
     testImplementation(Testing.mockK)
 }
 

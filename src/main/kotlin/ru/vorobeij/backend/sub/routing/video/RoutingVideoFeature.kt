@@ -30,10 +30,10 @@ class RoutingVideoFeature : Feature {
 
         routing {
             route("/video") {
+                post("/add") { TODO("Not implemented") }
                 post("/search") { videoSearchController.search(context) }
                 get("/recommendations/{$KEY_USER_ID}") { videoRecommendationsController.getRecommendations(context) }
                 get("/watched/{$KEY_USER_ID}") { videoRecommendationsController.getWatched(context) }
-                post("/add") { TODO("Not implemented") }
                 post("/save") { TODO("Not implemented") }
                 post("/subtitles/{$KEY_VIDEO_ID}") { TODO("Not implemented") }
                 post("/report") { TODO("Not implemented") }

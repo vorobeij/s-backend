@@ -9,17 +9,19 @@ import kotlinx.serialization.Serializable
  * @property page
  */
 @Serializable
-data class VideoSearchRequestBody(
+data class VideoSearchRequest(
     @SerialName("query") val query: String = "",
-    @SerialName("filters") val filters: Filters = Filters(),
+    @SerialName("filters") val filters: Filters,
     @SerialName("page") val page: Int = 0
 ) {
 
     /**
      * @property difficulty if not specified, show all levels
+     * @property language
      */
     @Serializable
     data class Filters(
-        @SerialName("difficulty") val difficulty: List<Int> = (1..5).toList()
+        @SerialName("difficulty") val difficulty: List<Int> = (1..5).toList(),
+        @SerialName("language") val language: String
     )
 }
