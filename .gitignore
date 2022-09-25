@@ -23,3 +23,5 @@ logs
 .idea/jarRepositories.xml
 .idea/$CACHE_FILE$
 /.idea/
+/tmp/db/
+/src/main/resources/*.dmg
