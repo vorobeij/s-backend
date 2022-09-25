@@ -77,9 +77,6 @@ version = "0.0.1"
 
 application {
     mainClass.set("ru.vorobeij.backend.sub.ApplicationKt")
-
-    val isDevelopment: Boolean = project.ext.has("development")
-    applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
 
 ktor {

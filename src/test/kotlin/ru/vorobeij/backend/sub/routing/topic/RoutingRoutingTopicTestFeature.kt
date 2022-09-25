@@ -6,8 +6,9 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.server.testing.testApplication
 import kotlin.test.assertEquals
 import org.junit.Test
+import org.koin.test.AutoCloseKoinTest
 
-internal class RoutingRoutingTopicTestFeature {
+internal class RoutingRoutingTopicTestFeature : AutoCloseKoinTest() {
 
     @Test
     fun `topic edit`() = testApplication {

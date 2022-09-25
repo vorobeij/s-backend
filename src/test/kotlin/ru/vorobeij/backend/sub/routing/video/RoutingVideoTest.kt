@@ -11,17 +11,20 @@ import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.testing.testApplication
 import kotlin.test.assertEquals
 import org.junit.Test
+import org.koin.test.AutoCloseKoinTest
 import ru.vorobeij.backend.sub.routing.db.utils.schema.recreateYouTubeVideos
 import ru.vorobeij.backend.sub.routing.db.utils.setupDatabase
 import ru.vorobeij.backend.sub.routing.video.search.data.VideoSearchRequest
 import ru.vorobeij.backend.sub.routing.video.search.data.VideoSearchResponseBody
 
-internal class RoutingVideoTest {
+internal class RoutingVideoTest : AutoCloseKoinTest() {
 
     @Test
     fun search() = testApplication {
-        setupDatabase {
-            recreateYouTubeVideos()
+        application {
+            setupDatabase {
+                recreateYouTubeVideos()
+            }
         }
 
         val client = createClient {
