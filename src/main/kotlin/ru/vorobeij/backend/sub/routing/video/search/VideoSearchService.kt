@@ -2,7 +2,7 @@ package ru.vorobeij.backend.sub.routing.video.search
 
 import kotlinx.coroutines.Deferred
 import org.jetbrains.exposed.sql.ResultRow
-import org.jetbrains.exposed.sql.selectAll
+import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.experimental.suspendedTransactionAsync
 import ru.vorobeij.backend.sub.database.DatabaseProvider
 import ru.vorobeij.backend.sub.database.tables.YouTubeVideos
@@ -15,8 +15,12 @@ class VideoSearchService(
 ) {
 
     suspend fun search(body: VideoSearchRequest): Deferred<VideoSearchResponseBody> = suspendedTransactionAsync(db = databaseProvider.database) {
+        val videos = YouTubeVideos
+            .select { YouTubeVideos.language eq body.filters.language }
+            .map(ResultRow::youTubeVideo)
+
         VideoSearchResponseBody(
-            videos = YouTubeVideos.selectAll().map(ResultRow::youTubeVideo),
+            videos = videos,
             page = 0
         )
     }
